@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06070b">
+<meta name="description" content="T AI Hub؛ مرکز هوشمند دسترسی، کشف و مدیریت ابزارهای هوش مصنوعی از مجموعه T Technology.">
+<title>T AI Hub | T Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #05070c;
+  --bg-surface: #0a0e1a;
+  --bg-card: rgba(15, 22, 38, 0.65);
+  --bg-card-hover: rgba(23, 33, 56, 0.85);
+  --line-subtle: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(123, 107, 255, 0.28);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --purple-glow: #7c66ff;
+  --violet-accent: #9d85ff;
+  --cyan-accent: #38bdf8;
+  --ice-blue: #7dd3fc;
+  --glass-bg: rgba(10, 15, 28, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-glow: 0 10px 40px -10px rgba(124, 102, 255, 0.25);
+  --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; font-family: Vazirmatn, system-ui, -apple-system, sans-serif; background-color: var(--bg-dark); }
+body {
+  margin: 0;
+  color: var(--text-primary);
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 15% 0%, rgba(124, 102, 255, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(157, 133, 255, 0.08) 0%, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124, 102, 255, 0.5); }
+
+/* APP LAYOUT */
+.app {
+  max-width: 1700px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: rgba(8, 11, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--line-subtle);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-subtle);
+  position: relative;
+}
+
+/* SIGNATURE 'T' BRANDMARK */
+.brandmark {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(124,102,255,0.4) 100%), #0d0f1a;
+  border: 1px solid rgba(157, 133, 255, 0.4);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: 26px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(124, 102, 255, 0.35);
+  overflow: hidden;
+}
+.brandmark::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, transparent, var(--violet-accent), transparent);
+  z-index: 1;
+  animation: rotateGlow 6s linear infinite;
+}
+.brandmark-inner {
+  position: absolute;
+  inset: 1px;
+  background: #090c15;
+  border-radius: 11px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(157, 133, 255, 0.8);
+}
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.brandname {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+.brandname small {
+  display: block;
+  color: var(--cyan-accent);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+.navlabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 0 12px 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.nav button:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav button.active {
+  background: linear-gradient(90deg, rgba(124, 102, 255, 0.18) 0%, rgba(124, 102, 255, 0.04) 100%);
+  border-color: var(--line-strong);
+  color: var(--text-primary);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.nav button.active::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: var(--violet-accent);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 10px var(--violet-accent);
+}
+
+.navicon {
+  width: 22px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--violet-accent);
+  display: grid;
+  place-items: center;
+}
+.navcount {
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.nav button.active .navcount {
+  background: rgba(124, 102, 255, 0.3);
+  color: var(--ice-blue);
+}
+
+.sidebarbottom {
+  margin-top: auto;
+  border: 1px solid var(--line-subtle);
+  background: linear-gradient(160deg, rgba(20, 26, 45, 0.6) 0%, rgba(10, 14, 25, 0.8) 100%);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.sidebarbottom::before {
+  content: 'T';
+  position: absolute;
+  left: -10px;
+  bottom: -20px;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+}
+.sidebarbottom b {
+  font-size: 13px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebarbottom p {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 8px 0 12px;
+}
+.sidebarbottom a {
+  font-size: 11px;
+  color: var(--cyan-accent);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition-fast);
+}
+.sidebarbottom a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px var(--cyan-accent);
+}
+
+/* MAIN CONTENT */
+.main {
+  min-width: 0;
+  padding: 32px 40px 60px;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.crumb {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.crumb b { color: var(--text-primary); font-weight: 600; }
+.topactions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.iconbtn, .toplink {
+  border: 1px solid var(--line-subtle);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.iconbtn:hover, .toplink:hover {
+  border-color: var(--line-strong);
+  color: var(--text-primary);
+  background: rgba(23, 33, 56, 0.9);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(124, 102, 255, 0.4), rgba(56, 189, 248, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  box-shadow: 0 0 15px rgba(124,102,255,0.2);
+}
+
+/* HERO SECTION */
+.hero {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(20, 23, 42, 0.85) 0%, rgba(10, 14, 26, 0.95) 60%, rgba(8, 20, 35, 0.85) 100%);
+  padding: 44px 48px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  margin-bottom: 36px;
+}
+
+/* Floating abstract particles */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(124, 102, 255, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+.hero::after {
+  content: "T";
+  position: absolute;
+  left: 2%;
+  top: -60px;
+  font-size: 340px;
+  font-weight: 900;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+  font-family: sans-serif;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(157, 133, 255, 0.3);
+  background: rgba(124, 102, 255, 0.08);
+  color: #d8b4fe;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 15px rgba(124, 102, 255, 0.15);
+}
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan-accent);
+  box-shadow: 0 0 10px var(--cyan-accent);
+  animation: pulseGlow 2s infinite;
+}
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+.hero h1 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 1.4;
+  margin: 20px 0 14px;
+  max-width: 780px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+.gradient {
+  background: linear-gradient(135deg, #ffffff 20%, var(--violet-accent) 60%, var(--ice-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin: 0;
+  max-width: 680px;
+}
+.herofoot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.hero-stat {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.hero-stat strong { color: var(--text-primary); margin-left: 6px; font-weight: 700; }
+
+/* SEARCH BAR SECTION */
+.searchrow {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 32px;
+  position: relative;
+  z-index: 10;
+}
+.searchbox {
+  position: relative;
+  flex: 1;
+}
+.searchbox span {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--violet-accent);
+  font-size: 18px;
+  pointer-events: none;
+}
+.searchbox input {
+  width: 100%;
+  border: 1px solid var(--line-subtle);
+  background: rgba(12, 17, 30, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  padding: 16px 52px 16px 20px;
+  color: #fff;
+  outline: none;
+  font-size: 13.5px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+.searchbox input:focus {
+  border-color: var(--violet-accent);
+  background: rgba(16, 23, 40, 0.95);
+  box-shadow: 0 0 30px rgba(124, 102, 255, 0.25), inset 0 0 10px rgba(124, 102, 255, 0.1);
+}
+.searchbox input::placeholder { color: var(--text-muted); }
+
+.clearbtn {
+  border: 1px solid var(--line-subtle);
+  background: rgba(12, 17, 30, 0.85);
+  backdrop-filter: blur(16px);
+  color: var(--text-secondary);
+  border-radius: var(--radius-lg);
+  padding: 0 22px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+.clearbtn:hover {
+  border-color: var(--line-strong);
+  color: var(--text-primary);
+  background: rgba(23, 33, 56, 0.9);
+}
+
+/* STATS CARDS */
+.quickstats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.stat {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition-smooth);
+}
+.stat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(157, 133, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+.staticon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(124, 102, 255, 0.2), rgba(56, 189, 248, 0.1));
+  border: 1px solid rgba(157, 133, 255, 0.2);
+  color: var(--ice-blue);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+.stat b { font-size: 20px; font-weight: 800; display: block; color: var(--text-primary); line-height: 1.2; }
+.stat small { font-size: 11px; color: var(--text-muted); }
+
+/* FOUR ADDITIONAL EXPERIENCES (SECTION 8) */
+.section-block {
+  margin-bottom: 44px;
+}
+.section-title-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--cyan-accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.section-title-tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--cyan-accent);
+  border-radius: 2px;
+}
+
+/* 1. EDITORIAL SHOWCASE / FEATURED */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.showcase-card {
+  border: 1px solid var(--line-subtle);
+  background: linear-gradient(135deg, rgba(20, 26, 46, 0.7) 0%, rgba(12, 16, 28, 0.8) 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.showcase-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+.showcase-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(124, 102, 255, 0.2);
+  border: 1px solid var(--violet-accent);
+  color: var(--ice-blue);
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.showcase-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.showcase-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+
+/* 2. TRENDING AI HIGHLIGHTS */
+.trending-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.trending-item {
+  border: 1px solid var(--line-subtle);
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: var(--transition-fast);
+}
+.trending-item:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: var(--bg-card-hover);
+}
+.trending-rank {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--cyan-accent);
+  opacity: 0.6;
+}
+
+/* 4. T AI COLLECTIONS */
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.collection-card {
+  border: 1px solid var(--line-subtle);
+  background: rgba(14, 20, 35, 0.6);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  transition: var(--transition-fast);
+}
+.collection-card:hover {
+  border-color: var(--violet-accent);
+  background: rgba(22, 30, 52, 0.8);
+}
+.collection-card h4 { margin: 0 0 6px 0; font-size: 13px; font-weight: 700; color: #fff; }
+.collection-card p { margin: 0; font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+/* CONTENT HEADER */
+.contenthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 36px 0 16px;
+}
+.contenthead h2 { font-size: 20px; font-weight: 800; margin: 0; }
+.contenthead p { font-size: 12px; color: var(--text-muted); margin: 6px 0 0; }
+
+.sortselect {
+  border: 1px solid var(--line-subtle);
+  background: rgba(12, 17, 30, 0.85);
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.sortselect:hover { border-color: var(--line-strong); color: #fff; }
+
+/* CATEGORY FILTER CHIPS */
+.categorychips {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 14px;
+  margin-bottom: 20px;
+  scrollbar-width: none;
+}
+.categorychips::-webkit-scrollbar { display: none; }
+.chip {
+  white-space: nowrap;
+  border: 1px solid var(--line-subtle);
+  background: rgba(14, 20, 35, 0.7);
+  backdrop-filter: blur(8px);
+  color: var(--text-secondary);
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-size: 11.5px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+.chip:hover {
+  border-color: rgba(157, 133, 255, 0.4);
+  color: #fff;
+  background: rgba(22, 31, 55, 0.9);
+}
+.chip.active {
+  background: linear-gradient(135deg, rgba(124, 102, 255, 0.3) 0%, rgba(56, 189, 248, 0.15) 100%);
+  border-color: var(--violet-accent);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(124, 102, 255, 0.2);
+}
+
+/* AI TOOL CARDS GRID (ULTRA PREMIUM) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+.tool {
+  min-width: 0;
+  min-height: 165px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  transition: var(--transition-smooth);
+  overflow: hidden;
+}
+.tool::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--glow, rgba(124, 102, 255, 0.25)), transparent 70%);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+.tool::after {
+  content: "T";
+  position: absolute;
+  right: -5px;
+  bottom: -15px;
+  font-size: 75px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.015);
+  pointer-events: none;
+  user-select: none;
+  transition: var(--transition-smooth);
+}
+.tool:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: var(--line-strong);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(124, 102, 255, 0.2);
+  background: var(--bg-card-hover);
+}
+.tool:hover::before { opacity: 1; }
+.tool:hover::after { color: rgba(124, 102, 255, 0.04); transform: scale(1.1); }
+
+.tool > * { position: relative; z-index: 2; }
+
+.toolicon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--ibg, rgba(40, 36, 66, 0.8));
+  color: var(--ic, var(--violet-accent));
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-fast);
+}
+.tool:hover .toolicon {
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 20px var(--glow, rgba(124, 102, 255, 0.4));
+}
+
+.toolname {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.2px;
+}
+.toolmeta {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.fav {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 0;
+  z-index: 5;
+  transition: var(--transition-fast);
+}
+.fav:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ff7694;
+  transform: scale(1.15);
+}
+.fav.on {
+  color: #ff5277;
+  background: rgba(255, 82, 119, 0.15);
+  text-shadow: 0 0 8px rgba(255, 82, 119, 0.6);
+}
+.openhint {
+  font-size: 9.5px;
+  color: var(--cyan-accent);
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: var(--transition-fast);
+  font-weight: 600;
+}
+.tool:hover .openhint {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tool[hidden] { display: none !important; }
+
+/* EMPTY STATE */
+.empty {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  color: var(--text-muted);
+  font-size: 13px;
+  background: rgba(10, 14, 25, 0.4);
+}
+.empty.show { display: block; }
+
+/* FEATURES GRID */
+.featuregrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.feature {
+  border: 1px solid var(--line-subtle);
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  min-height: 130px;
+  transition: var(--transition-fast);
+}
+.feature:hover {
+  border-color: rgba(157, 133, 255, 0.3);
+  transform: translateY(-2px);
+  background: var(--bg-card-hover);
+}
+.feature .ficon {
+  font-size: 22px;
+  color: var(--violet-accent);
+  margin-bottom: 12px;
+}
+.feature b { font-size: 13px; display: block; color: var(--text-primary); margin-bottom: 6px; }
+.feature p { font-size: 11px; line-height: 1.8; color: var(--text-muted); margin: 0; }
+
+/* RECENT ACTIVITY */
+.recentwrap {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.recentitem {
+  border: 1px solid var(--line-subtle);
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: 11.5px;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.recentitem:hover {
+  border-color: var(--cyan-accent);
+  color: var(--text-primary);
+  background: rgba(20, 30, 50, 0.8);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--line-subtle);
+  padding-top: 28px;
+  margin-top: 50px;
+  font-size: 11px;
+  line-height: 2;
+}
+.footer b { color: var(--violet-accent); }
+
+/* TOAST NOTIFICATION */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  background: rgba(16, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line-strong);
+  color: var(--text-primary);
+  padding: 14px 22px;
+  border-radius: var(--radius-lg);
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 15px rgba(124, 102, 255, 0.3);
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  transition: var(--transition-smooth);
+  z-index: 100;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE DESIGN (SECTION 9) */
+@media(max-width: 1400px) {
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .collections-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .quickstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .featuregrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .trending-strip { grid-template-columns: 1fr; }
+}
+@media(max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: relative;
+    height: auto;
+    padding: 16px 20px;
+    gap: 16px;
+    border-left: 0;
+    border-bottom: 1px solid var(--line-subtle);
+  }
+  .brand { padding-bottom: 12px; }
+  .nav { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
+  .navlabel, .sidebarbottom { display: none; }
+  .nav button { flex: 0 0 auto; padding: 10px 16px; }
+  .nav button.active::before { display: none; }
+  .navcount { display: none; }
+  .main { padding: 20px; }
+}
+@media(max-width: 640px) {
+  .main { padding: 16px; }
+  .topbar { margin-bottom: 20px; }
+  .toplink { display: none; }
+  .hero { padding: 28px 20px; border-radius: var(--radius-lg); }
+  .hero::after { font-size: 200px; left: -10px; }
+  .hero h1 { font-size: 24px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tool { min-height: 150px; padding: 14px 10px; }
+  .toolname { font-size: 12px; }
+  .featuregrid, .collections-grid { grid-template-columns: 1fr; }
+  .contenthead { align-items: flex-start; flex-direction: column; }
+  .sortselect { width: 100%; }
+  .quickstats { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+.fav:focus-visible { outline: 2px solid var(--ice-blue); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brandmark"><div class="brandmark-inner">T</div></div>
+      <div class="brandname">T AI HUB<small>TECHNOLOGY • AI CENTER</small></div>
+    </div>
+    <div>
+      <div class="navlabel">فضای کاری</div>
+      <nav class="nav" id="mainNav">
+        <button class="active" data-filter="all"><span class="navicon">▦</span>همه ابزارها<span class="navcount" id="navAll">۴۰</span></button>
+        <button data-filter="chat"><span class="navicon">✧</span>دستیارهای هوشمند</button>
+        <button data-filter="image"><span class="navicon">▧</span>ساخت تصویر</button>
+        <button data-filter="video"><span class="navicon">▶</span>ساخت ویدیو</button>
+        <button data-filter="audio"><span class="navicon">♫</span>صدا و موسیقی</button>
+        <button data-filter="work"><span class="navicon">✳</span>طراحی و محتوا</button>
+        <button data-filter="code"><span class="navicon">⌘</span>برنامه‌نویسی</button>
+        <button data-filter="research"><span class="navicon">⌕</span>تحقیق و یادگیری</button>
+        <button data-filter="writing"><span class="navicon">文</span>ترجمه و نویسندگی</button>
+        <button data-filter="productivity"><span class="navicon">⚡</span>بهره‌وری و اتوماسیون</button>
+        <button data-filter="favorites"><span class="navicon">♡</span>علاقه‌مندی‌ها</button>
+      </nav>
+    </div>
+    <div class="sidebarbottom">
+      <b>✦ ساخته‌شده در مجموعه T</b>
+      <p>یک نقطه شروع برای کشف ابزارهای هوش مصنوعی؛ بدون نیاز به حساب کاربری در خود این داشبورد.</p>
+      <a href="https://github.com/aboltechx" target="_blank" rel="noopener noreferrer">مشاهده مجموعه T در GitHub ↗</a>
+    </div>
+  </aside>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb">مجموعه T <span style="color:var(--line-strong)">/</span> <b>مرکز هوش مصنوعی</b></div>
+      <div class="topactions">
+        <a class="toplink" href="#features">قابلیت‌های T AI Hub</a>
+        <button class="iconbtn" id="clearSearch" title="پاک کردن جست‌وجو">پاک‌کردن جست‌وجو</button>
+        <div class="avatar">T</div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> مرکز هوش مصنوعی مجموعه T</div>
+      <h1>تمام دنیای هوش مصنوعی،<br><span class="gradient">در یک فضای هوشمند</span></h1>
+      <p>ابزار مناسب کارت را سریع پیدا کن؛ از گفتگو و طراحی تا برنامه‌نویسی، پژوهش، ترجمه و خودکارسازی کارها.</p>
+      <div class="herofoot">
+        <span class="hero-stat"><strong id="heroCount">۴۰</strong> ابزار منتخب</span>
+        <span class="hero-stat">۹ دسته کاربردی</span>
+        <span class="hero-stat">دسترسی مستقیم به وب‌سایت رسمی</span>
+      </div>
+    </section>
+
+    <!-- SEARCH ROW -->
+    <div class="searchrow">
+      <div class="searchbox">
+        <span>⌕</span>
+        <input id="search" type="search" placeholder="نام ابزار یا کاری که می‌خواهی انجام بده جست‌وجو کن..." autocomplete="off">
+      </div>
+      <button class="clearbtn" id="reset">بازنشانی</button>
+    </div>
+
+    <!-- QUICK STATS -->
+    <section class="quickstats">
+      <div class="stat"><div class="staticon">▦</div><div><b id="statTools">۴۰</b><small>ابزار در کتابخانه</small></div></div>
+      <div class="stat"><div class="staticon">◈</div><div><b>۹</b><small>دسته‌بندی تخصصی</small></div></div>
+      <div class="stat"><div class="staticon">♡</div><div><b id="statFav">۰</b><small>علاقه‌مندی‌های شما</small></div></div>
+      <div class="stat"><div class="staticon">↗</div><div><b id="statRecent">۰</b><small>بازدیدهای اخیر</small></div></div>
+    </section>
+
+    <!-- SECTION 8 EXPERIENCE 1: FEATURED AI SHOWCASE -->
+    <section class="section-block">
+      <div class="section-title-tag">منتخب ویراستاران T</div>
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <span class="showcase-badge">پیشنهاد ویژه</span>
+          <div class="showcase-title">Cursor — کدنویسی هوشمند نسل بعد</div>
+          <div class="showcase-desc">محیط توسعه مبتنی بر هوش مصنوعی که راندمان برنامه‌نویسی را تا چندین برابر افزایش می‌دهد.</div>
+          <a class="recentitem" href="https://cursor.com/" target="_blank" rel="noopener noreferrer">مشاهده Cursor ↗</a>
+        </div>
+        <div class="showcase-card">
+          <span class="showcase-badge">تحول دیجیتال</span>
+          <div class="showcase-title">NotebookLM — پژوهشگر همراه گوگل</div>
+          <div class="showcase-desc">تحلیل اسناد، خلاصه‌سازی کتاب‌ها و تبدیل داده‌ها به پادکست‌های صوتی هوشمند.</div>
+          <a class="recentitem" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">مشاهده NotebookLM ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 EXPERIENCE 2: TRENDING AI -->
+    <section class="section-block">
+      <div class="section-title-tag">منتخب‌های پیشنهادی T</div>
+      <div class="trending-strip">
+        <div class="trending-item">
+          <span class="trending-rank">01</span>
+          <div>
+            <div style="font-size:12.5px;font-weight:700">ChatGPT</div>
+            <div style="font-size:10px;color:var(--text-muted)">OpenAI</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-rank">02</span>
+          <div>
+            <div style="font-size:12.5px;font-weight:700">Claude</div>
+            <div style="font-size:10px;color:var(--text-muted)">Anthropic</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-rank">03</span>
+          <div>
+            <div style="font-size:12.5px;font-weight:700">Midjourney</div>
+            <div style="font-size:10px;color:var(--text-muted)">Visual Art</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 EXPERIENCE 4: T AI COLLECTIONS -->
+    <section class="section-block">
+      <div class="section-title-tag">مجموعه‌های اختصاصی T</div>
+      <div class="collections-grid">
+        <div class="collection-card">
+          <h4>💻 پکیج توسعه‌دهندگان</h4>
+          <p>شامل Cursor، Replit، v0 و Lovable برای ساخت سریع نرم‌افزار.</p>
+        </div>
+        <div class="collection-card">
+          <h4>🎨 استودیوی خلاقیت</h4>
+          <p>ترکیب Midjourney، Runway، Suno و Firefly برای خلق محتوای چندرسانه‌ای.</p>
+        </div>
+        <div class="collection-card">
+          <h4>🎓 دستیار پژوهشگران</h4>
+          <p>ابزارهای Elicit، Consensus، SciSpace و NotebookLM برای مقاله‌نویسی.</p>
+        </div>
+        <div class="collection-card">
+          <h4>⚡ اتوماسیون کسب‌وکار</h4>
+          <p>ترکیب Zapier، Make و n8n برای خودکارسازی کارهای سازمانی.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN TOOLS LIBRARY -->
+    <section id="library">
+      <div class="contenthead">
+        <div>
+          <h2 id="sectionTitle">کتابخانه ابزارها</h2>
+          <p id="sectionDesc">ابزار موردنظرت را انتخاب کن تا به وب‌سایت رسمی آن منتقل شوی.</p>
+        </div>
+        <select id="sort" class="sortselect" aria-label="مرتب‌سازی">
+          <option value="default">مرتب‌سازی: پیش‌فرض</option>
+          <option value="az">نام ابزار: الفبا</option>
+          <option value="fav">علاقه‌مندی‌ها در ابتدا</option>
+        </select>
+      </div>
+
+      <!-- SECTION 8 EXPERIENCE 3: DISCOVER BY CATEGORY CHIPS -->
+      <div class="categorychips" id="chips">
+        <button class="chip active" data-filter="all">همه</button>
+        <button class="chip" data-filter="chat">دستیار هوشمند</button>
+        <button class="chip" data-filter="image">تصویر</button>
+        <button class="chip" data-filter="video">ویدیو</button>
+        <button class="chip" data-filter="audio">صدا و موسیقی</button>
+        <button class="chip" data-filter="work">طراحی و محتوا</button>
+        <button class="chip" data-filter="code">برنامه‌نویسی</button>
+        <button class="chip" data-filter="research">تحقیق و یادگیری</button>
+        <button class="chip" data-filter="writing">ترجمه و نویسندگی</button>
+        <button class="chip" data-filter="productivity">بهره‌وری و اتوماسیون</button>
+      </div>
+
+      <div class="grid" id="grid">
+        <!-- CHAT -->
+        <a class="tool" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="ChatGPT" data-search="chatgpt چت جی پی تی دستیار گفتگو openai"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(30, 52, 50, 0.8);--ic:#75e3c2;--glow:rgba(117,227,194,0.3)">✳</div><div class="toolname">ChatGPT</div><div class="toolmeta">دستیار همه‌کاره</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://claude.ai/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="Claude" data-search="claude کلود تحلیل نوشتن آنتروپیک"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(59, 41, 36, 0.8);--ic:#f2a77e;--glow:rgba(242,167,126,0.3)">✳</div><div class="toolname">Claude</div><div class="toolmeta">تحلیل و نوشتن</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="Gemini" data-search="gemini جمنای گوگل"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(42, 35, 69, 0.8);--ic:#b9a8ff;--glow:rgba(185,168,255,0.3)">✦</div><div class="toolname">Gemini</div><div class="toolmeta">دستیار گوگل</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://grok.com/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="Grok" data-search="grok گراک xai"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(41, 46, 57, 0.8);--ic:#e7ebf2;--glow:rgba(231,235,242,0.3)">𝕏</div><div class="toolname">Grok</div><div class="toolmeta">دستیار هوشمند</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="Perplexity" data-search="perplexity پرپلکسیتی جستجوی پاسخ"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(27, 60, 58, 0.8);--ic:#72e2d4;--glow:rgba(114,226,212,0.3)">◈</div><div class="toolname">Perplexity</div><div class="toolmeta">جست‌وجوی پاسخ‌محور</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer" data-cat="chat" data-name="Copilot" data-search="copilot کوپایلت مایکروسافت"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(32, 57, 74, 0.8);--ic:#8bd7ff;--glow:rgba(139,215,255,0.3)">◉</div><div class="toolname">Copilot</div><div class="toolmeta">دستیار مایکروسافت</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- IMAGE -->
+        <a class="tool" href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer" data-cat="image" data-name="Midjourney" data-search="midjourney میدجرنی تولید تصویر"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(41, 45, 55, 0.8);--ic:#e8eaf0;--glow:rgba(232,234,240,0.3)">◭</div><div class="toolname">Midjourney</div><div class="toolmeta">تولید تصویر هنری</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://openai.com/index/dall-e-3/" target="_blank" rel="noopener noreferrer" data-cat="image" data-name="DALL·E" data-search="dall-e dalle دال ای تصویر openai"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(64, 48, 29, 0.8);--ic:#ffc47e;--glow:rgba(255,196,126,0.3)">✺</div><div class="toolname">DALL·E</div><div class="toolmeta">تولید تصویر</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://blackforestlabs.ai/" target="_blank" rel="noopener noreferrer" data-cat="image" data-name="FLUX" data-search="flux فلکس black forest labs تصویر"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(27, 58, 66, 0.8);--ic:#6be2e8;--glow:rgba(107,226,232,0.3)">▲</div><div class="toolname">FLUX</div><div class="toolmeta">مدل تولید تصویر</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://leonardo.ai/" target="_blank" rel="noopener noreferrer" data-cat="image" data-name="Leonardo AI" data-search="leonardo لئوناردو تصویر گرافیک"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(48, 35, 66, 0.8);--ic:#d2aaff;--glow:rgba(210,170,255,0.3)">◉</div><div class="toolname">Leonardo AI</div><div class="toolmeta">خلق تصویر و طراحی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://firefly.adobe.com/" target="_blank" rel="noopener noreferrer" data-cat="image" data-name="Adobe Firefly" data-search="adobe firefly ادوبی تصویر"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(64, 37, 59, 0.8);--ic:#ffacd0;--glow:rgba(255,172,208,0.3)">✷</div><div class="toolname">Adobe Firefly</div><div class="toolmeta">ابزار تصویری ادوبی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- VIDEO -->
+        <a class="tool" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer" data-cat="video" data-name="Runway" data-search="runway ران وی ویدیو"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(60, 37, 51, 0.8);--ic:#ff9db9;--glow:rgba(255,157,185,0.3)">R</div><div class="toolname">Runway</div><div class="toolmeta">ساخت ویدیو</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://pika.art/" target="_blank" rel="noopener noreferrer" data-cat="video" data-name="Pika" data-search="pika پیکا ویدیو انیمیشن"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(64, 53, 31, 0.8);--ic:#ffd37d;--glow:rgba(255,211,125,0.3)">▶</div><div class="toolname">Pika</div><div class="toolmeta">ویدیو و انیمیشن</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://lumalabs.ai/" target="_blank" rel="noopener noreferrer" data-cat="video" data-name="Luma" data-search="luma لوما dream machine ویدیو"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(37, 44, 73, 0.8);--ic:#aebcff;--glow:rgba(174,188,255,0.3)">◢</div><div class="toolname">Luma</div><div class="toolmeta">Dream Machine</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://klingai.com/" target="_blank" rel="noopener noreferrer" data-cat="video" data-name="Kling AI" data-search="kling کلینگ ویدیو"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(28, 48, 70, 0.8);--ic:#8bc8ff;--glow:rgba(139,200,255,0.3)">K</div><div class="toolname">Kling AI</div><div class="toolmeta">ساخت ویدیو</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://deepmind.google/models/veo/" target="_blank" rel="noopener noreferrer" data-cat="video" data-name="Veo" data-search="veo وئو گوگل ویدیو"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(64, 35, 43, 0.8);--ic:#ff9d9d;--glow:rgba(255,157,157,0.3)">V</div><div class="toolname">Veo</div><div class="toolmeta">ویدیو از گوگل</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- AUDIO -->
+        <a class="tool" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer" data-cat="audio" data-name="ElevenLabs" data-search="elevenlabs الون لبز صدا گویندگی"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(30, 57, 55, 0.8);--ic:#8de8d6;--glow:rgba(141,232,214,0.3)">Ⅱ</div><div class="toolname">ElevenLabs</div><div class="toolmeta">تولید صدا و گویندگی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://suno.com/" target="_blank" rel="noopener noreferrer" data-cat="audio" data-name="Suno" data-search="suno سونو موسیقی آهنگ"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(62, 36, 59, 0.8);--ic:#ff9bcb;--glow:rgba(255,155,203,0.3)">♫</div><div class="toolname">Suno</div><div class="toolmeta">ساخت موسیقی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://udio.com/" target="_blank" rel="noopener noreferrer" data-cat="audio" data-name="Udio" data-search="udio اودیو موسیقی"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(48, 36, 67, 0.8);--ic:#c5aaff;--glow:rgba(197,170,255,0.3)">♪</div><div class="toolname">Udio</div><div class="toolmeta">تولید آهنگ</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.minimax.io/" target="_blank" rel="noopener noreferrer" data-cat="audio" data-name="MiniMax" data-search="minimax مینی مکس صدا"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(66, 35, 51, 0.8);--ic:#ff9bb7;--glow:rgba(255,155,183,0.3)">〰</div><div class="toolname">MiniMax</div><div class="toolmeta">ابزارهای صوتی و AI</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- WORK / DESIGN -->
+        <a class="tool" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" data-cat="work" data-name="NotebookLM" data-search="notebooklm نوت بوک ال ام یادداشت گوگل"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(32, 54, 75, 0.8);--ic:#a9d5ff;--glow:rgba(169,213,255,0.3)">▤</div><div class="toolname">NotebookLM</div><div class="toolmeta">تحقیق و یادداشت</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://gamma.app/" target="_blank" rel="noopener noreferrer" data-cat="work" data-name="Gamma" data-search="gamma گاما ارائه اسلاید"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(50, 35, 69, 0.8);--ic:#d7b2ff;--glow:rgba(215,178,255,0.3)">G</div><div class="toolname">Gamma</div><div class="toolmeta">ساخت ارائه</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" data-cat="work" data-name="Canva" data-search="canva کانوا طراحی گرافیک"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(29, 60, 61, 0.8);--ic:#7ee4dd;--glow:rgba(126,228,221,0.3)">C</div><div class="toolname">Canva</div><div class="toolmeta">طراحی و محتوا</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.heygen.com/" target="_blank" rel="noopener noreferrer" data-cat="work" data-name="HeyGen" data-search="heygen هیگن آواتار ویدیو"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(32, 52, 73, 0.8);--ic:#a9d8ff;--glow:rgba(169,216,255,0.3)">H</div><div class="toolname">HeyGen</div><div class="toolmeta">آواتار هوشمند</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- CODE -->
+        <a class="tool" href="https://cursor.com/" target="_blank" rel="noopener noreferrer" data-cat="code" data-name="Cursor" data-search="cursor کرسر برنامه نویسی کدنویسی ویرایشگر"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(37, 53, 74, 0.8);--ic:#b6d9ff;--glow:rgba(182,217,255,0.3)">⌘</div><div class="toolname">Cursor</div><div class="toolmeta">کدنویسی با AI</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://replit.com/" target="_blank" rel="noopener noreferrer" data-cat="code" data-name="Replit" data-search="replit ریپلیت برنامه نویسی ساخت اپ سایت"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(64, 48, 32, 0.8);--ic:#ffbd83;--glow:rgba(255,189,131,0.3)">R</div><div class="toolname">Replit</div><div class="toolmeta">ساخت و اجرای پروژه</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://lovable.dev/" target="_blank" rel="noopener noreferrer" data-cat="code" data-name="Lovable" data-search="lovable لاوبل ساخت سایت اپلیکیشن"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(60, 39, 55, 0.8);--ic:#ffadd1;--glow:rgba(255,173,209,0.3)">♡</div><div class="toolname">Lovable</div><div class="toolmeta">ساخت اپ و وب‌سایت</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://v0.app/" target="_blank" rel="noopener noreferrer" data-cat="code" data-name="v0" data-search="v0 وی صفر طراحی رابط برنامه نویسی سایت"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(41, 46, 59, 0.8);--ic:#f0f1f5;--glow:rgba(240,241,245,0.3)">v0</div><div class="toolname">v0</div><div class="toolmeta">طراحی رابط و کد</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- RESEARCH -->
+        <a class="tool" href="https://elicit.com/" target="_blank" rel="noopener noreferrer" data-cat="research" data-name="Elicit" data-search="elicit الیسیت تحقیق علمی مقاله پژوهش"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(30, 58, 58, 0.8);--ic:#8de4d2;--glow:rgba(141,228,210,0.3)">E</div><div class="toolname">Elicit</div><div class="toolmeta">پژوهش و مقاله علمی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://consensus.app/" target="_blank" rel="noopener noreferrer" data-cat="research" data-name="Consensus" data-search="consensus کنسنسوس تحقیق علمی پاسخ مقاله"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(31, 60, 53, 0.8);--ic:#92e5b7;--glow:rgba(146,229,183,0.3)">C</div><div class="toolname">Consensus</div><div class="toolmeta">پاسخ از پژوهش‌ها</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://typeset.io/" target="_blank" rel="noopener noreferrer" data-cat="research" data-name="SciSpace" data-search="scispace سایس اسپیس مقاله تحقیق"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(38, 53, 74, 0.8);--ic:#9acbff;--glow:rgba(154,203,255,0.3)">S</div><div class="toolname">SciSpace</div><div class="toolmeta">خواندن و فهم مقاله</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.researchrabbit.ai/" target="_blank" rel="noopener noreferrer" data-cat="research" data-name="ResearchRabbit" data-search="researchrabbit ریسرچ ربیت کشف مقاله"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(56, 43, 63, 0.8);--ic:#e1b7ff;--glow:rgba(225,183,255,0.3)">R</div><div class="toolname">ResearchRabbit</div><div class="toolmeta">کشف ارتباط مقاله‌ها</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- WRITING -->
+        <a class="tool" href="https://www.deepl.com/translator" target="_blank" rel="noopener noreferrer" data-cat="writing" data-name="DeepL" data-search="deepl دیپ ال ترجمه مترجم زبان"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(36, 59, 80, 0.8);--ic:#a6d8ff;--glow:rgba(166,216,255,0.3)">D</div><div class="toolname">DeepL</div><div class="toolmeta">ترجمه هوشمند</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.grammarly.com/" target="_blank" rel="noopener noreferrer" data-cat="writing" data-name="Grammarly" data-search="grammarly گرامرلی نوشتن گرامر انگلیسی"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(28, 64, 55, 0.8);--ic:#7de0b0;--glow:rgba(125,224,176,0.3)">G</div><div class="toolname">Grammarly</div><div class="toolmeta">بهبود نوشتار</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://quillbot.com/" target="_blank" rel="noopener noreferrer" data-cat="writing" data-name="QuillBot" data-search="quillbot کوییل بات بازنویسی نوشتن"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(39, 60, 50, 0.8);--ic:#9ee6aa;--glow:rgba(158,230,170,0.3)">Q</div><div class="toolname">QuillBot</div><div class="toolmeta">بازنویسی و خلاصه‌سازی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.wordtune.com/" target="_blank" rel="noopener noreferrer" data-cat="writing" data-name="Wordtune" data-search="wordtune وردتیون بازنویسی متن"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(59, 46, 74, 0.8);--ic:#d4b7ff;--glow:rgba(212,183,255,0.3)">W</div><div class="toolname">Wordtune</div><div class="toolmeta">بازنویسی متن</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+
+        <!-- PRODUCTIVITY -->
+        <a class="tool" href="https://zapier.com/" target="_blank" rel="noopener noreferrer" data-cat="productivity" data-name="Zapier" data-search="zapier زپیر اتوماسیون اتصال برنامه ها"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(70, 48, 30, 0.8);--ic:#ffbd7b;--glow:rgba(255,189,123,0.3)">Z</div><div class="toolname">Zapier</div><div class="toolmeta">اتصال و خودکارسازی</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.make.com/" target="_blank" rel="noopener noreferrer" data-cat="productivity" data-name="Make" data-search="make میک اتوماسیون گردش کار"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(61, 41, 55, 0.8);--ic:#ffacd0;--glow:rgba(255,172,208,0.3)">M</div><div class="toolname">Make</div><div class="toolmeta">ساخت گردش‌کار</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://n8n.io/" target="_blank" rel="noopener noreferrer" data-cat="productivity" data-name="n8n" data-search="n8n ان ایت ان اتوماسیون متن باز"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(69, 39, 42, 0.8);--ic:#ff9b8c;--glow:rgba(255,155,140,0.3)">n8n</div><div class="toolname">n8n</div><div class="toolmeta">اتوماسیون پیشرفته</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+        <a class="tool" href="https://www.notion.so/product/ai" target="_blank" rel="noopener noreferrer" data-cat="productivity" data-name="Notion AI" data-search="notion notion ai نوشن مدیریت کار یادداشت"><span class="fav" role="button" tabindex="0" aria-label="افزودن به علاقه‌مندی‌ها" aria-pressed="false">♡</span><div class="toolicon" style="--ibg:rgba(48, 49, 58, 0.8);--ic:#f0f1f4;--glow:rgba(240,241,244,0.3)">N</div><div class="toolname">Notion AI</div><div class="toolmeta">مدیریت دانش و کار</div><span class="openhint">ورود به وب‌سایت ↗</span></a>
+      </div>
+      <div id="empty" class="empty">نتیجه‌ای پیدا نشد. عبارت دیگری امتحان کن یا فیلترها را پاک کن.</div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+      <div class="contenthead">
+        <div>
+          <h2>چه کارهایی با T AI Hub انجام می‌دهی؟</h2>
+          <p>چهار مسیر تازه برای استفاده حرفه‌ای‌تر از هوش مصنوعی</p>
+        </div>
+      </div>
+      <div class="featuregrid">
+        <article class="feature"><div class="ficon">⌘</div><b>ساخت سایت و برنامه</b><p>از ایده و طراحی رابط تا نوشتن کد، رفع خطا و ساخت نمونه اولیه.</p></article>
+        <article class="feature"><div class="ficon">⌕</div><b>تحقیق و یادگیری</b><p>پیداکردن منابع، بررسی مقاله‌ها، خلاصه‌سازی و فهم موضوعات پیچیده.</p></article>
+        <article class="feature"><div class="ficon">文</div><b>ترجمه و تولید متن</b><p>ترجمه، اصلاح نوشتار، بازنویسی، خلاصه‌سازی و آماده‌سازی محتوا.</p></article>
+        <article class="feature"><div class="ficon">⚡</div><b>خودکارسازی کارها</b><p>اتصال سرویس‌ها و ساخت گردش‌کار برای کم‌کردن کارهای تکراری.</p></article>
+      </div>
+    </section>
+
+    <!-- RECENT SECTION -->
+    <section id="recentSection">
+      <div class="contenthead">
+        <div>
+          <h2>آخرین بازدیدها</h2>
+          <p>ابزارهایی که اخیراً از این داشبورد باز کرده‌ای</p>
+        </div>
+        <button class="iconbtn" id="clearRecent">پاک‌کردن تاریخچه</button>
+      </div>
+      <div id="recent" class="recentwrap"><span class="recentitem">هنوز ابزاری باز نکرده‌ای.</span></div>
+    </section>
+
+    <footer class="footer">
+      <b>T TECHNOLOGY</b> · ساخته‌شده برای مجموعه T<br>این داشبورد ابزارها را معرفی و به وب‌سایت رسمی آن‌ها هدایت می‌کند؛ امکانات، قیمت و محدودیت هر سرویس متعلق به ارائه‌دهنده آن است.
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- PRESERVED & ENHANCED FUNCTIONALITY SCRIPT -->
+<script>
+(() => {
+ const $ = s => document.querySelector(s);
+ const $$ = s => [...document.querySelectorAll(s)];
+ const cards = $$('.tool');
+ const favKey = 't_ai_hub_favorites_v2', recentKey = 't_ai_hub_recent_v2';
+ let favorites = load(favKey, []), recent = load(recentKey, []), active = 'all';
+ const names = {all:'کتابخانه ابزارها',chat:'دستیارهای هوشمند',image:'ساخت تصویر',video:'ساخت ویدیو',audio:'صدا و موسیقی',work:'طراحی و محتوا',code:'برنامه‌نویسی',research:'تحقیق و یادگیری',writing:'ترجمه و نویسندگی',productivity:'بهره‌وری و اتوماسیون',favorites:'علاقه‌مندی‌ها'};
+ 
+ function load(key, fallback){try{const value=JSON.parse(localStorage.getItem(key));return Array.isArray(value)?value:fallback}catch(e){return fallback}}
+ function save(key,val){try{localStorage.setItem(key,JSON.stringify(val));return true}catch(e){return false}}
+ function fa(n){return Number(n).toLocaleString('fa-IR')}
+ function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2100)}
+ 
+ function updateFavButtons(){
+   cards.forEach(c=>{
+     const b=c.querySelector('.fav');
+     const on=favorites.includes(c.dataset.name);
+     b.classList.toggle('on',on);
+     b.textContent=on?'♥':'♡';
+     b.setAttribute('aria-pressed',String(on));
+   });
+   $('#statFav').textContent=fa(favorites.length);
+ }
+ 
+ function renderRecent(){
+   const box=$('#recent');
+   box.innerHTML='';
+   const list=recent.filter(n=>cards.some(c=>c.dataset.name===n)).slice(0,8);
+   $('#statRecent').textContent=fa(list.length);
+   if(!list.length){
+     box.innerHTML='<span class="recentitem">هنوز ابزاری باز نکرده‌ای.</span>';
+     return;
+   }
+   list.forEach(n=>{
+     const c=cards.find(x=>x.dataset.name===n);
+     const a=document.createElement('a');
+     a.className='recentitem';
+     a.href=c.href;
+     a.target='_blank';
+     a.rel='noopener noreferrer';
+     a.textContent=n+' ↗';
+     a.addEventListener('click',()=>remember(n));
+     box.appendChild(a);
+   });
+ }
+ 
+ function remember(n){
+   recent=[n,...recent.filter(x=>x!==n)].slice(0,8);
+   save(recentKey,recent);
+   renderRecent();
+ }
+ 
+ function apply(){
+   const q=$('#search').value.trim().toLocaleLowerCase('fa');
+   let visible=0;
+   let list=[...cards];
+   if($('#sort').value==='az') list.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));
+   if($('#sort').value==='fav') list.sort((a,b)=>Number(favorites.includes(b.dataset.name))-Number(favorites.includes(a.dataset.name)));
+   list.forEach(c=>$('#grid').appendChild(c));
+   cards.forEach(c=>{
+     const cat=active==='all'||c.dataset.cat===active;
+     const fav=active!=='favorites'||favorites.includes(c.dataset.name);
+     const text=(c.dataset.search+' '+c.dataset.name+' '+c.dataset.cat).toLocaleLowerCase('fa');
+     const match=text.includes(q);
+     const show=cat&&fav&&match;
+     c.hidden=!show;
+     if(show) visible++;
+   });
+   $('#sectionTitle').textContent=names[active]||names.all;
+   $('#sectionDesc').textContent=active==='favorites'?'فهرست ابزارهایی که ذخیره کرده‌ای.':'ابزار موردنظرت را انتخاب کن تا به وب‌سایت رسمی آن منتقل شوی.';
+   $('#empty').classList.toggle('show',visible===0);
+   $('#sectionDesc').textContent=(active==='favorites'?'فهرست ابزارهایی که ذخیره کرده‌ای. ':'')+fa(visible)+' ابزار نمایش داده می‌شود.';
+   $('#statTools').textContent=fa(cards.length);
+   $('#heroCount').textContent=fa(cards.length);
+   $('#navAll').textContent=fa(cards.length);
+   $$('.nav button,.chip').forEach(b=>b.classList.toggle('active',b.dataset.filter===active));
+   updateFavButtons();
+ }
+ 
+ cards.forEach(c=>{
+   c.querySelector('.fav')?.addEventListener('keydown',e=>{
+     if(e.key==='Enter'||e.key===' '){e.preventDefault();c.querySelector('.fav').click();}
+   });
+   c.addEventListener('click',e=>{
+     if(e.target.closest('.fav')){
+       e.preventDefault();
+       e.stopPropagation();
+       const n=c.dataset.name;
+       favorites=favorites.includes(n)?favorites.filter(x=>x!==n):[...favorites,n];
+       save(favKey,favorites);
+       updateFavButtons();
+       apply();
+       toast(favorites.includes(n)?'به علاقه‌مندی‌ها اضافه شد':'از علاقه‌مندی‌ها حذف شد');
+       return;
+     }
+     remember(c.dataset.name);
+   });
+ });
+ 
+ $$('.nav button,.chip').forEach(b=>b.addEventListener('click',()=>{
+   active=b.dataset.filter;
+   apply();
+   if(innerWidth<900)$('#library').scrollIntoView({behavior:'smooth'});
+ }));
+ 
+ $('#search').addEventListener('input',apply);
+ $('#sort').addEventListener('change',apply);
+ $('#reset').addEventListener('click',()=>{$('#search').value='';$('#sort').value='default';active='all';apply();toast('فیلترها بازنشانی شدند')});
+ $('#clearSearch').addEventListener('click',()=>{$('#search').value='';active='all';$('#sort').value='default';apply();$('#search').focus();toast('جست‌وجو پاک شد')});
+ $('#search').addEventListener('keydown',e=>{if(e.key==='Escape'){e.currentTarget.value='';apply();}});
+ $('#clearRecent').addEventListener('click',()=>{recent=[];save(recentKey,recent);renderRecent();toast('تاریخچه بازدید پاک شد')});
+ 
+ renderRecent();
+ apply();
+})();
+</script>
+</body>
+</html>
